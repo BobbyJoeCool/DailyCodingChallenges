@@ -31,8 +31,26 @@
 # - Do NOT print inside the function
 
 def classify_package(weight):
-    # Your code here
-    pass
+    weight_class = ""
+    cost = 0
+    if weight <= 0:
+        return "Invalid weight"
+    elif weight <= 1:
+        weight_class = "Light"
+        cost = 3
+    elif weight <= 5:
+        weight_class = "Standard"
+        cost = 7
+    elif weight <= 20:
+        weight_class = "Heavy"
+        cost = 15
+    else:
+        weight_class = "Oversized"
+        cost = 25 + (weight-20) * .5
+    
+    round(cost, 2)
+    
+    return (weight_class, cost)
 
 
 if __name__ == "__main__":
