@@ -27,8 +27,46 @@
 # - Do NOT print inside the function
 
 def text_analyzer(text):
-    # Your code here
-    pass
+    result = {}
+    # For loop to remove all punctuation from the string.
+    for punctuation in """.,!?<>:;/}{[]()'@#$%^&*\"""":
+            text = text.replace(punctuation, "")
+            
+    # Split the words into a list and parse them to lower case
+    words = text.lower().strip().split(" ")
+    
+    # the length (or number of items in the list) is the total_words
+    result["total_words"] = len(words)
+    
+    # for loop to determine the number of times each word appears
+    word_count = {}
+    for word in words:
+        if word not in word_count:
+            word_count[word] = 1
+        else:
+            word_count[word] += 1
+            
+    result["unique_words"] = len(word_count)
+        
+    # Search word_count using a for loop to find the most used word
+    mostFrequentWord = ""
+    value = 0    
+    for label, number in word_count.items():
+        if number > value:
+            mostFrequentWord = label
+            value = number
+        
+    result["most_frequent"] = mostFrequentWord
+    
+    keys = list(result.keys())
+    
+    finalString = f"""{{
+    "{keys[0]}": {result.get(keys[0])},
+    "{keys[1]}": {result.get(keys[1])},
+    "{keys[2]}": {result.get(keys[2])}
+}}"""
+        
+    return finalString
 
 
 if __name__ == "__main__":
