@@ -48,7 +48,7 @@ def classify_package(weight):
         weight_class = "Oversized"
         cost = 25 + (weight-20) * .5
     
-    round(cost, 2)
+    cost = round(cost, 2)
     
     return (weight_class, cost)
 
