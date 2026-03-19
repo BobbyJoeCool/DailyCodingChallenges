@@ -48,25 +48,21 @@ def text_analyzer(text):
             
     result["unique_words"] = len(word_count)
         
-    # Search word_count using a for loop to find the most used word
-    mostFrequentWord = ""
-    value = 0    
-    for label, number in word_count.items():
-        if number > value:
-            mostFrequentWord = label
-            value = number
-        
-    result["most_frequent"] = mostFrequentWord
+    # Find max frequency
+    max_count = max(word_count.values())
     
-    keys = list(result.keys())
+    # Find all words with max frequency
+    most_frequent = []
+    for word, count in word_count.items():
+        if count == max_count:
+            most_frequent.append(word)
     
-    finalString = f"""{{
-    "{keys[0]}": {result.get(keys[0])},
-    "{keys[1]}": {result.get(keys[1])},
-    "{keys[2]}": {result.get(keys[2])}
-}}"""
+    # Sort alphabetically
+    most_frequent.sort()
+    
+    result["most_frequent"] = most_frequent 
         
-    return finalString
+    return result
 
 
 if __name__ == "__main__":
