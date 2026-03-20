@@ -49,6 +49,15 @@ INSERT INTO orders (order_id, customer_id, order_total) VALUES
 -- YOUR QUERY BELOW
 -- ============================================
 
+SELECT customer_id, SUM(order_total) AS total_spent
+FROM orders GROUP BY customer_id
+HAVING total_spent > 200
+ORDER BY total_spent DESC;
+
+SELECT customer_id, SUM(order_total) AS total_spent
+FROM orders GROUP BY customer_id
+ORDER BY total_spent DESC;
+
 
 
 -- ============================================
